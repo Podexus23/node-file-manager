@@ -4,7 +4,7 @@ import {
   printHello,
   printWorkingDirectory,
 } from "./modules/printOps.js";
-
+import { commandsController } from "./modules/controller.js";
 import { setUserDir, setUserName } from "./modules/helpers.js";
 
 export const userData = {
@@ -21,9 +21,7 @@ function main() {
 
   //take data from terminal
   stdin.setEncoding("utf-8");
-  stdin.on("data", (data) => {
-    console.log(data);
-  });
+  stdin.on("data", commandsController);
 
   //exit on ctrl+c
   process.on("SIGINT", (signal) => {
