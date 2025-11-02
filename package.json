@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "test",
+    "podex": "node app.js -- --username=Podexus",
+    "bold": "node app.js -- --username=",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +17,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/Podexus23/node-file-manager/issues"
   },
