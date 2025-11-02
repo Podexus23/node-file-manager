@@ -7,7 +7,11 @@ import {
   renameFileOp,
 } from "./mngOps.js";
 import { goToPath, pathUp, showCurrentLs } from "./pathAndLsOps.js";
+import { hashOps } from "./hashOps.js";
+import { compressFileBrotli, decompressFileBrotli } from "./compressionOps.js";
+import { osOps } from "./osOps.js";
 import { printGoodBye, printWorkingDirectory } from "./printOps.js";
+import { runTest } from "../test/testCases.js";
 import { EOL } from "node:os";
 import { normalize } from "node:path";
 
@@ -83,6 +87,11 @@ export async function commandsController(data) {
       await showCurrentLs();
       printWorkingDirectory();
       break;
+    case "hash":
+      const hashRes = await hashOps(sortedInputData[1]);
+      if (hashRes) console.log(`Hash for your file${EOL}` + hashRes);
+      printWorkingDirectory();
+      break;
     case "cat":
       readFileOp(sortedInputData[1]);
       break;
@@ -100,6 +109,12 @@ export async function commandsController(data) {
       break;
     case "rm":
       deleteFileOp(sortedInputData[1]);
+      break;
+    case "compress":
+      compressFileBrotli(sortedInputData[1], sortedInputData[2]);
+      break;
+    case "decompress":
+      decompressFileBrotli(sortedInputData[1], sortedInputData[2]);
       break;
     case ".exit":
       printGoodBye();
